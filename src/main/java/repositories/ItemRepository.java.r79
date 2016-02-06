@@ -1,0 +1,29 @@
+package repositories;
+
+import java.util.Collection;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import domain.Category;
+import domain.Item;
+
+@Repository
+public interface ItemRepository extends JpaRepository<Item,Integer>{
+
+	@Query("select i from Item i group by i.category")
+	Collection<Item> findItemsOrderedByCategory();
+	
+	@Query("select i from Item i where ((i.sku=?1 or i.name=?1 or i.description=?1) and i.deleted=false)")
+	Collection<Item> findItemsContainKeyword(String k);
+	
+	@Query("select a from Item a where a.sku = (select i.sku from CashOrder c join c.orderedItems i group by i.sku having sum(i.quantity) >= all(select sum(i.quantity) from CashOrder c join c.orderedItems i group by i.sku))")
+	Collection<Item> findAllBestSellingItems();
+	
+	@Query("select a from Item a where a.sku = (select i.sku from CashOrder c join c.orderedItems i group by i.sku having sum(i.quantity) <= all(select sum(i.quantity) from CashOrder c join c.orderedItems i group by i.sku))")
+	Collection<Item> findAllWorstSellingItems();
+	
+	@Query("select i from Item i where i.category = ?1")
+	Collection<Item> findItemByCategory(Category category);
+}

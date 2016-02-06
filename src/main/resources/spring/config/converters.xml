@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * converters.xml * * Copyright (C) 2014 Universidad de Sevilla * * The 
+	use of this project is hereby constrained to the conditions of the * TDG 
+	Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd		
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd		
+	">
+
+	<util:list id="converters">
+
+		<bean class="converters.ActorToStringConverter"></bean>
+		<bean class="converters.StringToActorConverter"></bean>
+
+		<bean class="converters.AuthorityToStringConverter"></bean>
+		<bean class="converters.StringToAuthorityConverter"></bean>
+	
+		<bean class="converters.AdminToStringConverter"></bean>
+		<bean class="converters.StringToAdminConverter"></bean>
+
+		<bean class="converters.CashOrderToStringConverter"></bean>
+		<bean class="converters.StringToCashOrderConverter"></bean>
+
+		<bean class="converters.CategoryToStringConverter"></bean>
+		<bean class="converters.StringToCategoryConverter"></bean>
+
+		<bean class="converters.ConsumerToStringConverter"></bean>
+		<bean class="converters.StringToConsumerConverter"></bean>
+
+		<bean class="converters.ContentToStringConverter"></bean>
+		<bean class="converters.StringToContentConverter"></bean>
+
+		<bean class="converters.ItemToStringConverter"></bean>
+		<bean class="converters.StringToItemConverter"></bean>
+
+		<bean class="converters.OrderedItemToStringConverter"></bean>
+		<bean class="converters.StringToOrderedItemConverter"></bean>
+
+		<bean class="converters.ShoppingCartToStringConverter"></bean>
+		<bean class="converters.StringToShoppingCartConverter"></bean>
+
+		<bean class="converters.StoreToStringConverter"></bean>
+		<bean class="converters.StringToStoreConverter"></bean>
+
+		<bean class="converters.TaxToStringConverter"></bean>
+		<bean class="converters.StringToTaxConverter"></bean>
+
+
+	</util:list>
+
+</beans>

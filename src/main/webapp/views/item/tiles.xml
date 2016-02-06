@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="item/categorylist" extends="master.page">
+		<put-attribute name="title" value="Items by category" />
+		<put-attribute name="body" value="/views/item/listItemCategory.jsp" />
+	</definition>
+	<definition name="item/listsearch" extends="master.page">
+		<put-attribute name="title" value="Items searched" />
+		<put-attribute name="body" value="/views/item/listsearch.jsp" />
+	</definition>
+	<definition name="item/list" extends="master.page">
+		<put-attribute name="title" value="List of items" />
+		<put-attribute name="body" value="/views/item/list.jsp" />
+	</definition>
+	<definition name="item/edit" extends="master.page">
+		<put-attribute name="title" value="Edit items" />
+		<put-attribute name="body" value="/views/item/edit.jsp" />
+	</definition>
+	<definition name="item/list-itemsDeleted" extends="master.page">
+		<put-attribute name="title" value="List deleted Items" />
+		<put-attribute name="body" value="/views/item/list-itemsDeleted.jsp" />
+	</definition>
+	
+	<definition name="item/create" extends="master.page">
+		<put-attribute name="title" value="Create Item" />
+		<put-attribute name="body" value="/views/item/create.jsp" />
+	</definition>
+
+</tiles-definitions>

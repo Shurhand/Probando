@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * PopulateDatabase.xml * * Copyright (C) 2014 Universidad de Sevilla 
+	* * The use of this project is hereby constrained to the conditions of the 
+	* TDG Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="consumer1" />
+		<property name="password" value="4ee9c60cc32e6615c3c45dc6822c45de" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CONSUMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="consumer2" />
+		<property name="password" value="4ca80127919a65aace84bc96346c5bc4" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CONSUMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="consumer3" />
+		<property name="password" value="91ec1f9324753048c0096d036a694f86" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CONSUMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="clerk1" />
+		<property name="password" value="72121c039f48bb6241c94332cadc945e" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CLERK" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- Other domain beans come here -->
+
+	<!-- Admins -->
+	<bean id="admin1" class="domain.Admin">
+		<property name="name" value="Aitor" />
+		<property name="surname" value="Tilla" />
+		<property name="email" value="aitortilladepatatas@gmail.com" />
+		<property name="phone" value="673923829" />
+		<property name="userAccount" ref="userAccount1" />
+	</bean>
+
+
+
+	<bean id="consumer1" class="domain.Consumer">
+		<property name="name" value="Antonio" />
+		<property name="surname" value="Balsera" />
+		<property name="email" value="antoniobalsera@gmail.com" />
+		<property name="phone" value="673929329" />
+		<property name="address" value="Avenida de la Constitución, nº5" />
+		<property name="creditCard" ref="creditCard1" />
+		<property name="userAccount" ref="userAccount2" />
+		<property name="shoppingCart" ref="shoppingCart1" />
+		<property name="cashOrders">
+			<list>
+				<ref bean="cashOrder1" />
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="consumer2" class="domain.Consumer">
+		<property name="name" value="Julio" />
+		<property name="surname" value="Gómez" />
+		<property name="email" value="eltitojulito@gmail.com" />
+		<property name="phone" value="612929329" />
+		<property name="address" value="Avenidad Kansas City nº10" />
+		<property name="creditCard" ref="creditCard2" />
+		<property name="userAccount" ref="userAccount3" />
+		<property name="shoppingCart" ref="shoppingCart2" />
+		<property name="cashOrders">
+			<list>
+				<ref bean="cashOrder2" />
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="consumer3" class="domain.Consumer">
+		<property name="name" value="Sancho" />
+		<property name="surname" value="Sánchez" />
+		<property name="email" value="sanchopanza@gmail.com" />
+		<property name="phone" value="673954329" />
+		<property name="address" value="C/Reina Mercedes, nº2" />
+		<property name="creditCard" ref="creditCard3" />
+		<property name="userAccount" ref="userAccount4" />
+		<property name="shoppingCart" ref="shoppingCart3" />
+		<property name="cashOrders">
+			<list>
+				<ref bean="cashOrder3" />
+			</list>
+		</property>
+
+	</bean>
+	<!-- ShoppingCarts -->
+	<bean id="shoppingCart1" class="domain.ShoppingCart">
+		<property name="comments">
+			<list>
+				<value>Sin comentarios</value>
+			</list>
+		</property>
+		<property name="consumer" ref="consumer1" />
+		<property name="contents">
+			<list>
+				<ref bean="content1" />
+			</list>
+		</property>
+	</bean>
+	<bean id="shoppingCart2" class="domain.ShoppingCart">
+		<property name="comments">
+			<list>
+				<value>Sin comentarios</value>
+			</list>
+		</property>
+		<property name="consumer" ref="consumer2" />
+		<property name="contents">
+			<list>
+				<ref bean="content2" />
+			</list>
+		</property>
+	</bean>
+	<bean id="shoppingCart3" class="domain.ShoppingCart">
+		<property name="comments">
+			<list>
+				<value>Sin comentarios</value>
+			</list>
+		</property>
+		<property name="consumer" ref="consumer3" />
+		<property name="contents">
+			<list>
+				<ref bean="content3" />
+			</list>
+		</property>
+	</bean>
+
+
+
+	<!-- Clerks -->
+	<bean id="clerk1" class="domain.Clerk">
+		<property name="name" value="Remedios" />
+		<property name="surname" value="Caseros" />
+		<property name="email" value="remedioscaseros@gmail.com" />
+		<property name="phone" value="673921229" />
+		<property name="userAccount" ref="userAccount5" />
+		<property name="cashOrders">
+			<list>
+				<ref bean="cashOrder1" />
+				<ref bean="cashOrder2" />
+				<ref bean="cashOrder3" />
+			</list>
+		</property>
+	</bean>
+	<!-- CreditCards -->
+	<bean id="creditCard1" class="domain.CreditCard">
+		<property name="holderName" value="Santander" />
+		<property name="brandName" value="MasterCard" />
+		<property name="number" value="4160818214885017" />
+		<property name="expirationMonth" value="08" />
+		<property name="expirationYear" value="2018" />
+		<property name="cvvCode" value="890" />
+	</bean>
+	<bean id="creditCard2" class="domain.CreditCard">
+		<property name="holderName" value="Caja Rural" />
+		<property name="brandName" value="Visa" />
+		<property name="number" value="4160818214885017" />
+		<property name="expirationMonth" value="12" />
+		<property name="expirationYear" value="2016" />
+		<property name="cvvCode" value="678" />
+	</bean>
+	<bean id="creditCard3" class="domain.CreditCard">
+		<property name="holderName" value="Caja Almendralejo" />
+		<property name="brandName" value="Visa" />
+		<property name="number" value="4160818214885017" />
+		<property name="expirationMonth" value="02" />
+		<property name="expirationYear" value="2020" />
+		<property name="cvvCode" value="823" />
+	</bean>
+
+
+	<!-- Tax -->
+	<bean id="tax1" class="domain.Tax">
+		<property name="nameCategory" value="General" />
+		<property name="percent" value="21.00" />
+		<property name="used" value="true" />
+		<property name="categories">
+			<list>
+				<ref bean="category2" />
+				<ref bean="category3" />
+				<ref bean="category4" />
+			</list>
+		</property>
+	</bean>
+	<bean id="tax2" class="domain.Tax">
+		<property name="nameCategory" value="Reducido" />
+		<property name="percent" value="10.00" />
+		<property name="used" value="true" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="tax3" class="domain.Tax">
+		<property name="nameCategory" value="Superreducido" />
+		<property name="percent" value="4.00" />
+		<property name="used" value="true" />
+		<property name="categories">
+			<list>
+				<ref bean="category1" />
+			</list>
+		</property>
+	</bean>
+	<bean id="tax4" class="domain.Tax">
+		<property name="nameCategory" value="Sin impuesto" />
+		<property name="percent" value="0" />
+		<property name="used" value="false" />
+		<property name="categories">
+			<list>
+			<ref bean="category5" />
+			</list>
+		</property>
+	</bean>
+	<!-- Categories -->
+	<bean id="category1" class="domain.Category">
+		<property name="name" value="Fruta y verdura" />
+		<property name="description" value="Frutas y verduras" />
+		<property name="picture"
+			value="http://dietas.gratis/wp-content/uploads/2015/02/Frutas-y-verduras-disminuye-riesgo-de-ca%CC%81ncer.jpeg" />
+		<property name="items">
+			<list>
+				<ref bean="item1" />
+				<ref bean="item4" />
+				<ref bean="item6" />
+			</list>
+		</property>
+		<property name="tax" ref="tax3" />
+	</bean>
+	<bean id="category2" class="domain.Category">
+		<property name="name" value="Higiene y belleza" />
+		<property name="description"
+			value="Perfumes, cremas y demás para el cuidado personal" />
+		<property name="picture"
+			value="http://www.granconsumo.tv/archivos/lineal_super_perfumeria_0_1.jpg" />
+		<property name="items">
+			<list>
+				<ref bean="item2" />
+			</list>
+		</property>
+		<property name="tax" ref="tax2" />
+	</bean>
+	<bean id="category3" class="domain.Category">
+		<property name="name" value="Bebidas con Alcohol" />
+		<property name="description" value="Vinos, whisky, ron, tequila..." />
+		<property name="picture"
+			value="http://welcometoibiza.com/wp-content/uploads/2014/05/compras-ibiza-licoreria-aniseta-022.jpg" />
+		<property name="items">
+			<list>
+				<ref bean="item3" />
+				<ref bean="item5" />
+				<ref bean="item7" />
+				<ref bean="item9" />
+				<ref bean="item10" />
+				<ref bean="item11" />
+				<ref bean="item12" />
+				<ref bean="item13" />
+				<ref bean="item14" />
+				<ref bean="item15" />
+				<ref bean="item16" />
+			</list>
+		</property>
+		<property name="tax" ref="tax1" />
+	</bean>
+
+	<bean id="category4" class="domain.Category">
+		<property name="name" value="Helados" />
+		<property name="description" value="Helados y tartas" />
+		<property name="picture"
+			value="http://heladoslaperla.es/blog/wp-content/uploads/2015/10/helados-1.jpg" />
+		<property name="items">
+			<list>
+				<ref bean="item8" />
+			</list>
+		</property>
+		<property name="tax" ref="tax1" />
+	</bean>
+	<bean id="category5" class="domain.Category">
+		<property name="name" value="Indefinido" />
+		<property name="description"
+			value="Los productos que no tienen definida una categoría" />
+		<property name="picture" value="" />
+		<property name="items">
+			<list>
+			</list>
+		</property>
+		<property name="tax" ref="tax4" />
+	</bean>
+	<!-- Items -->
+	<bean id="item1" class="domain.Item">
+		<property name="sku" value="AA-0001" />
+		<property name="name" value="Malla Mandarinas 3 Kg" />
+		<property name="description" value="Malla de 3 Kilos de mandarinas" />
+		<property name="price" value="2.50" />
+		<property name="picture"
+			value="https://a2.soysuper.com/a458e1aa7957df27e73f4476acf08f73.340.340.0.min.wmark.73811d96.jpg"></property>
+		<property name="tags">
+			<list>
+				<value>Fruta</value>
+			</list>
+		</property>
+		<property name="category" ref="category1" />
+		<property name="contents">
+			<list>
+				<ref bean="content1" />
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+				<ref bean="store1" />
+			</list>
+		</property>
+	</bean>
+	<bean id="item2" class="domain.Item">
+		<property name="sku" value="AA-0002" />
+		<property name="name" value="Invictus" />
+		<property name="description" value="Fragancia Invictus de Paco Rabanne, 100 mL" />
+		<property name="price" value="35.00" />
+		<property name="picture"
+			value="http://grupoterranova.net/uploads/By3oudBctbAZ.jpg"></property>
+		<property name="tags">
+			<list>
+				<value>Colonias</value>
+				<value>Belleza</value>
+			</list>
+		</property>
+		<property name="category" ref="category2" />
+		<property name="contents">
+			<list>
+				<ref bean="content2" />
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+				<ref bean="store2" />
+			</list>
+		</property>
+
+	</bean>
+	<bean id="item3" class="domain.Item">
+		<property name="sku" value="AA-0003" />
+		<property name="name" value="Ron Brugal" />
+		<property name="description" value="Ron añejo Brugal 70 cL" />
+		<property name="price" value="12.50" />
+		<property name="picture"
+			value="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Ron_Brugal.jpg/161px-Ron_Brugal.jpg"></property>
+		<property name="tags">
+			<list>
+				<value>Ron</value>
+				<value>Alcohol</value>
+			</list>
+		</property>
+		<property name="category" ref="category3" />
+		<property name="contents">
+			<list>
+				<ref bean="content3" />
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+				<ref bean="store3" />
+			</list>
+		</property>
+	</bean>
+	<bean id="item4" class="domain.Item">
+		<property name="sku" value="AA-0004" />
+		<property name="name" value="Manzanas" />
+		<property name="description" value="Manzanas golden, precio por kilo" />
+		<property name="price" value="0.50" />
+		<property name="picture"
+			value="http://www.fruteriasegovialaencima.com/wp-content/uploads/2014/01/manzana-golden.jpg"></property>
+		<property name="tags">
+			<list>
+				<value>Fruta</value>
+			</list>
+		</property>
+		<property name="category" ref="category1" />
+		<property name="contents">
+			<list>
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+			</list>
+		</property>
+
+	</bean>
+	<bean id="item5" class="domain.Item">
+		<property name="sku" value="AA-0005" />
+		<property name="name" value="Absenta" />
+		<property name="description"
+			value="Absenta negro con sabor a regaliz 89º, 700 mL" />
+		<property name="price" value="15.00" />
+		<property name="picture"
+			value="http://cdn1.yopongoelhielo.com/526-thickbox_default/absenta-calavera-negra-899.jpg"></property>
+		<property name="tags">
+			<list>
+				<value>Licor</value>
+				<value>Alcohol</value>
+			</list>
+		</property>
+		<property name="category" ref="category3" />
+		<property name="contents">
+			<list>
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+			</list>
+		</property>
+
+	</bean>
+	<bean id="item6" class="domain.Item">
+		<property name="sku" value="AA-0006" />
+		<property name="name" value="Zanahorias" />
+		<property name="description" value="Zanahorias, precio por kilo" />
+		<property name="price" value="0.69" />
+		<property name="picture"
+			value="http://ejerciciosencasa.es/wp-content/uploads/2013/12/zanahorias_1.jpg"></property>
+		<property name="tags">
+			<list>
+				<value>Verdura</value>
+				<value>Ensalada</value>
+			</list>
+		</property>
+		<property name="category" ref="category1" />
+		<property name="contents">
+			<list>
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+			</list>
+		</property>
+
+	</bean>
+	<bean id="item7" class="domain.Item">
+		<property name="sku" value="AA-0007" />
+		<property name="name" value="Cruzcampo x24" />
+		<property name="description" value="24 latas de Cruzcampo de 333mL" />
+		<property name="price" value="6.50" />
+		<property name="picture" value="https://www.ulabox.com/media/45732_fb2.jpg"></property>
+		<property name="tags">
+			<list>
+				<value>Cerveza</value>
+				<value>Alcohol</value>
+			</list>
+		</property>
+		<property name="category" ref="category3" />
+		<property name="contents">
+			<list>
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="item8" class="domain.Item">
+		<property name="sku" value="AA-0008" />
+		<property name="name" value="Menta-Chocotrozos" />
+		<property name="description"
+			value="Tarrina de helado con sabor a menta y trozos de chocolate, 250 mL" />
+		<property name="price" value="2.50" />
+		<property name="picture"
+			value="http://www.carritus.com/images/images_pms/60/41800660.png"></property>
+		<property name="tags">
+			<list>
+				<value>Helado</value>
+				<value>Tarrina</value>
+				<value>Menta</value>
+			</list>
+		</property>
+		<property name="category" ref="category4" />
+		<property name="contents">
+			<list>
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+			</list>
+		</property>
+
+	</bean>
+	<bean id="item9" class="domain.Item">
+		<property name="sku" value="AA-0009" />
+		<property name="name" value="Barceló Imperial" />
+		<property name="description" value="Ron Barceló Imperial 700 mL" />
+		<property name="price" value="23.0" />
+		<property name="picture"
+			value="http://www.sibaritia.com/es/images/ron/barcelo_imperial.png"></property>
+		<property name="tags">
+			<list>
+				<value>Ron</value>
+				<value>Alcohol</value>
+			</list>
+		</property>
+		<property name="category" ref="category3" />
+		<property name="contents">
+			<list>
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="item10" class="domain.Item">
+		<property name="sku" value="AA-0010" />
+		<property name="name" value="Jack Daniel's" />
+		<property name="description" value="Whisky Jack Daniel's 700 ml" />
+		<property name="price" value="18.95" />
+		<property name="picture"
+			value="http://spiritedgifts.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/j/a/jack-daniels-black-label-old-no.7-gastroflasche-tennessee-whiskey.jpg"></property>
+		<property name="tags">
+			<list>
+				<value>Whisky</value>
+				<value>Alcohol</value>
+			</list>
+		</property>
+		<property name="category" ref="category3" />
+		<property name="contents">
+			<list>
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="item11" class="domain.Item">
+		<property name="sku" value="AA-0011" />
+		<property name="name" value="Bombay Sapphire" />
+		<property name="description" value="Ginebra Bombay Sapphire 700 mL" />
+		<property name="price" value="21.89" />
+		<property name="picture"
+			value="http://ecx.images-amazon.com/images/I/71TTN%2BUYihL._SL1500_.jpg"></property>
+		<property name="tags">
+			<list>
+				<value>Ginebra</value>
+				<value>Alcohol</value>
+			</list>
+		</property>
+		<property name="category" ref="category3" />
+		<property name="contents">
+			<list>
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="item12" class="domain.Item">
+		<property name="sku" value="AA-0012" />
+		<property name="name" value="Ruavieja" />
+		<property name="description" value="Licor de hierbas Ruavieja" />
+		<property name="price" value="12.80" />
+		<property name="picture"
+			value="http://amantesdeljamon.es/img/product_images/7_852_rua_vieja_licor_de_hierbas_hr.jpg"></property>
+		<property name="tags">
+			<list>
+				<value>Licor</value>
+				<value>Alcohol</value>
+			</list>
+		</property>
+		<property name="category" ref="category3" />
+		<property name="contents">
+			<list>
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="item13" class="domain.Item">
+		<property name="sku" value="AA-0013" />
+		<property name="name" value="Vodka Eristoff" />
+		<property name="description" value="Vodka blanco Eristoff 700 mL" />
+		<property name="price" value="14.90" />
+		<property name="picture"
+			value="https://www.ulabox.com/media/8965_l1.jpg"></property>
+		<property name="tags">
+			<list>
+				<value>Vodka</value>
+				<value>Alcohol</value>
+			</list>
+		</property>
+		<property name="category" ref="category3" />
+		<property name="contents">
+			<list>
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="item14" class="domain.Item">
+		<property name="sku" value="AA-0014" />
+		<property name="name" value="Ron Arehucas" />
+		<property name="description" value="Ron añejo Arehucas 700 mL" />
+		<property name="price" value="13.90" />
+		<property name="picture"
+			value="https://tienda.tucanarias.com/photos/tucanarias/1123185544-1.jpg"></property>
+		<property name="tags">
+			<list>
+				<value>Ron</value>
+				<value>Alcohol</value>
+			</list>
+		</property>
+		<property name="category" ref="category3" />
+		<property name="contents">
+			<list>
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="item15" class="domain.Item">
+		<property name="sku" value="AA-0015" />
+		<property name="name" value="Hendrick's" />
+		<property name="description" value="Ginebra Hendrick's 700 mL" />
+		<property name="price" value="24.90" />
+		<property name="picture"
+			value="http://www.eladerezo.com/wp-content/uploads/2007/10/Botella-de-hendricks-gin.jpg"></property>
+		<property name="tags">
+			<list>
+				<value>Ginebra</value>
+				<value>Alcohol</value>
+			</list>
+		</property>
+		<property name="category" ref="category3" />
+		<property name="contents">
+			<list>
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="item16" class="domain.Item">
+		<property name="sku" value="AA-0016" />
+		<property name="name" value="JB 3 l." />
+		<property name="description" value="Whisky JB 3 Litros" />
+		<property name="price" value="52.32" />
+		<property name="picture"
+			value="http://i.ebayimg.com/00/s/NDAwWDMwMA==/z/7tMAAOSw0e9UyqtL/$_45.JPG"></property>
+		<property name="tags">
+			<list>
+				<value>Vodka</value>
+				<value>Alcohol</value>
+			</list>
+		</property>
+		<property name="category" ref="category3" />
+		<property name="contents">
+			<list>
+			</list>
+		</property>
+		<property name="stores">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<!-- Content -->
+	<bean id="content1" class="domain.Content">
+		<property name="quantity" value="2" />
+		<property name="shoppingCart" ref="shoppingCart1" />
+		<property name="item" ref="item1" />
+	</bean>
+	<bean id="content2" class="domain.Content">
+		<property name="quantity" value="1" />
+		<property name="shoppingCart" ref="shoppingCart2" />
+		<property name="item" ref="item2" />
+	</bean>
+	<bean id="content3" class="domain.Content">
+		<property name="quantity" value="5" />
+		<property name="shoppingCart" ref="shoppingCart3" />
+		<property name="item" ref="item3" />
+	</bean>
+
+
+	<!-- Warehouse -->
+	<bean id="warehouse1" class="domain.Warehouse">
+		<property name="name" value="Warehouse1" />
+		<property name="address" value="C/ Cardenal Ilundaín nº4" />
+		<property name="stores">
+			<list>
+				<ref bean="store1" />
+				<ref bean="store2" />
+				<ref bean="store3" />
+			</list>
+		</property>
+	</bean>
+	<!-- CashOrders -->
+	<bean id="cashOrder1" class="domain.CashOrder">
+		<property name="ticker" value="000000-aaaa" />
+		<property name="consumerName" value="Antonio" />
+		<property name="consumerAddress" value="C/ Genaro Parlade nº13" />
+		<property name="creditCard" ref="creditCard1" />
+		<property name="comments">
+			<list>
+				<value>Sin comentarios</value>
+			</list>
+		</property>
+		<property name="placementMoment" value="01/11/2015 10:25" />
+		<property name="deliveryDate">
+			<null />
+		</property>
+		<property name="CancellationDate">
+			<null />
+		</property>
+		<property name="consumer" ref="consumer1" />
+		<property name="clerk" ref="clerk1" />
+		<property name="orderedItems">
+			<list>
+				<ref bean="orderedItem1" />
+			</list>
+		</property>
+	</bean>
+	<bean id="cashOrder2" class="domain.CashOrder">
+		<property name="ticker" value="000001-aaaa" />
+		<property name="consumerName" value="Julio" />
+		<property name="consumerAddress" value="C/ Sierpes nº 4" />
+		<property name="creditCard" ref="creditCard2" />
+		<property name="comments">
+			<list>
+				<value>Sin comentarios</value>
+			</list>
+		</property>
+		<property name="placementMoment" value="23/10/2015 15:32" />
+		<property name="deliveryDate">
+			<null />
+		</property>
+		<property name="CancellationDate">
+			<null />
+		</property>
+		<property name="consumer" ref="consumer2" />
+		<property name="clerk" ref="clerk1" />
+		<property name="orderedItems">
+			<list>
+				<ref bean="orderedItem2" />
+			</list>
+		</property>
+	</bean>
+	<bean id="cashOrder3" class="domain.CashOrder">
+		<property name="ticker" value="000002-aaaa" />
+		<property name="consumerName" value="Sancho" />
+		<property name="consumerAddress" value="En un lugar de la Mancha" />
+		<property name="creditCard" ref="creditCard3" />
+		<property name="comments">
+			<list>
+				<value>Sin comentarios</value>
+			</list>
+		</property>
+		<property name="placementMoment" value="31/10/2015 23:59" />
+		<property name="deliveryDate">
+			<null />
+		</property>
+		<property name="CancellationDate">
+			<null />
+		</property>
+		<property name="consumer" ref="consumer3" />
+		<property name="clerk" ref="clerk1" />
+		<property name="orderedItems">
+			<list>
+				<ref bean="orderedItem3" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- OrderedItem -->
+	<bean id="orderedItem1" class="domain.OrderedItem">
+		<property name="sku" value="AA-0001" />
+		<property name="name" value="Malla Mandarinas 3 Kg" />
+		<property name="description" value="Malla de 3 Kilos de mandarinas" />
+		<property name="price" value="2.50" />
+		<property name="quantity" value="2" />
+		<property name="cashOrder" ref="cashOrder1" />
+
+	</bean>
+	<bean id="orderedItem2" class="domain.OrderedItem">
+		<property name="sku" value="AA-0002" />
+		<property name="name" value="Invictus" />
+		<property name="description" value="Fragancia Invictus de Paco Rabanne, 100 mL" />
+		<property name="price" value="35.00" />
+		<property name="quantity" value="3" />
+		<property name="cashOrder" ref="cashOrder2" />
+
+	</bean>
+	<bean id="orderedItem3" class="domain.OrderedItem">
+		<property name="sku" value="AA-0003" />
+		<property name="name" value="Ron Brugal" />
+		<property name="description" value="Ron añejo Brugal 70 cL" />
+		<property name="price" value="12.50" />
+		<property name="quantity" value="1" />
+		<property name="cashOrder" ref="cashOrder3" />
+
+	</bean>
+
+
+	<!-- Stores -->
+	<bean id="store1" class="domain.Store">
+		<property name="quantity" value="62" />
+		<property name="item" ref="item1" />
+		<property name="warehouse" ref="warehouse1" />
+	</bean>
+	<bean id="store2" class="domain.Store">
+		<property name="quantity" value="29" />
+		<property name="item" ref="item2" />
+		<property name="warehouse" ref="warehouse1" />
+	</bean>
+	<bean id="store3" class="domain.Store">
+		<property name="quantity" value="7" />
+		<property name="item" ref="item3" />
+		<property name="warehouse" ref="warehouse1" />
+	</bean>
+
+</beans>
